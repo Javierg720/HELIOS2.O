@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Helios",
+      "hasCanvas": false,
+      "bodyTextLen": 13,
+      "bodyTextHash": "2c07cf7b932f7cb1d5d8c5efa689bc78b8eb5753418268d035eca7fa9880a88e",
+      "bodyTextPrefix": "LOADING PLANS",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Helios",
+      "hasCanvas": false,
+      "bodyTextLen": 13,
+      "bodyTextHash": "2c07cf7b932f7cb1d5d8c5efa689bc78b8eb5753418268d035eca7fa9880a88e",
+      "bodyTextPrefix": "LOADING PLANS",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}
