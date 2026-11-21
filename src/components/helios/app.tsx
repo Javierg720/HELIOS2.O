@@ -37,19 +37,11 @@ const COPY: Record<StepId, string> = {
 
 export function HeliosApp() {
   const store = useHelios();
-  const [splash, setSplash] = useState(true);
+  const [drawMark, setDrawMark] = useState(true);
 
   useEffect(() => {
     void useHelios.persist.rehydrate();
-    const seen = sessionStorage.getItem("helios-splash");
-    if (seen) {
-      setSplash(false);
-      return;
-    }
-    const timer = window.setTimeout(() => {
-      sessionStorage.setItem("helios-splash", "1");
-      setSplash(false);
-    }, 900);
+    const timer = window.setTimeout(() => setDrawMark(false), 1100);
     return () => window.clearTimeout(timer);
   }, []);
 
@@ -121,33 +113,25 @@ export function HeliosApp() {
     });
   }
 
-  if (splash) {
-    return (
-      <main className="grid min-h-dvh place-items-center bg-bg px-6 text-center">
-        <div>
-          <Mark alt="Helios" className="mx-auto size-24" />
-          <p className="mt-6 text-sm tracking-widest text-muted">LOADING PLANS</p>
-          <div className="helios-breathe mx-auto mt-5 h-px w-24 bg-gold" />
-        </div>
-      </main>
-    );
-  }
-
   return (
     <div className="flex h-dvh flex-col bg-bg text-fg">
       <Toaster theme="dark" />
       <header className="shrink-0 border-b border-line">
+        <div className="h-px bg-gold" />
         <div className="flex items-center gap-3 px-4 py-3 md:px-6">
-          <Mark alt="" className="size-9" />
+          <Mark alt="" draw={drawMark} className="size-9" />
           <div className="min-w-0">
-            <p className="text-sm font-semibold tracking-tight">Helios</p>
+            <p className="text-sm font-semibold tracking-widest">HELIOS</p>
             <p className="truncate font-mono text-xs text-muted">{pathFor(store)}</p>
           </div>
           <div className="ml-auto flex items-center gap-2">
             {store.personalCode ? (
-              <span className="hidden rounded-full border border-gold/40 px-3 py-2 text-xs text-gold sm:inline">{store.personalCode}</span>
+              <span className="hidden font-mono text-xs tracking-wide text-gold sm:inline">{store.personalCode}</span>
             ) : null}
-            <Button onClick={() => store.patch({ assessmentOpen: true, assessmentSection: store.assessmentSection })}>
+            <Button className="hidden sm:inline-flex" onClick={() => store.loadCase()}>
+              Recorded case
+            </Button>
+            <Button tone="gold" onClick={() => store.patch({ assessmentOpen: true, assessmentSection: store.assessmentSection })}>
               Needs assessment
             </Button>
           </div>
@@ -200,6 +184,14 @@ export function HeliosApp() {
           </div>
         </div>
       ) : null}
+      <footer className="flex shrink-0 items-center justify-between gap-3 border-t border-line px-4 py-2 font-mono text-xs text-muted md:px-6">
+        <span className="truncate">
+          {store.zip || "—"} · {store.year} · MAPD · {plans.length} plans
+        </span>
+        <span className="shrink-0">
+          {store.medications.length} meds · {store.savedProviderIds.length} providers
+        </span>
+      </footer>
     </div>
   );
 }

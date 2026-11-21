@@ -2,8 +2,36 @@ import { Check } from "lucide-react";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
-export function Mark({ className, alt = "" }: { className?: string; alt?: string }) {
-  return <img src="/helios-mark.png" alt={alt} className={cn("rounded-full object-cover", className)} />;
+export function Mark({
+  className,
+  alt = "",
+  draw = false,
+}: {
+  className?: string;
+  alt?: string;
+  draw?: boolean;
+}) {
+  return (
+    <svg
+      viewBox="0 0 32 32"
+      role="img"
+      aria-label={alt || undefined}
+      aria-hidden={alt ? undefined : true}
+      className={cn("helios-mark", draw && "helios-draw", className)}
+    >
+      <circle cx="16" cy="16" r="15.25" className="fill-bg stroke-line" strokeWidth="0.7" />
+      <path
+        pathLength="100"
+        d="M1 16.7 H7.4 L9.3 13.7 L11.5 16.7 L13.4 20.8 L16 6.6 L18.7 22.6 L21.1 16.7 L23.2 13.6 L25.2 16.7 H31"
+        fill="none"
+        className="helios-trace stroke-fg"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="16" cy="16.7" r="1.55" className="fill-gold" />
+    </svg>
+  );
 }
 
 export function Button({
@@ -68,7 +96,7 @@ export function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-2 block text-xs text-muted">{label}</span>
+      <span className="mb-2 block text-xs tracking-wide text-muted uppercase">{label}</span>
       {children}
     </label>
   );

@@ -61,9 +61,9 @@ export function PlanGrid({ store, plans }: { store: HeliosStore; plans: Plan[] }
     <div className="px-4 pb-28 md:px-8">
       <div className="flex flex-wrap items-end justify-between gap-4 pt-6">
         <div>
-          <h1 className="text-3xl font-semibold tracking-tight">Plans for {store.zip || "—"}</h1>
-          <p className="mt-1 text-sm text-muted">
-            {plans.length} {plans.length === 1 ? "result" : "results"} · {store.year} · Recommended shortlist of a 44-plan market
+          <h1 className="text-4xl font-semibold">Plans for {store.zip || "—"}</h1>
+          <p className="mt-2 text-sm text-muted">
+            {plans.length} {plans.length === 1 ? "result" : "results"} · {store.year} · 3 carriers, 44 plans in market
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -196,7 +196,7 @@ function PlanRow({
           onClick={() => store.patch({ expandedId: open ? null : plan.id })}
         >
           <div className="flex flex-wrap items-center gap-2">
-            <h2 className="text-base font-medium">{plan.name}</h2>
+            <h2 className="text-lg font-medium">{plan.name}</h2>
             {!plan.commissionable ? <span className="text-xs text-muted">Non-commissionable</span> : null}
             {plan.appointed ? <span className="text-xs text-gold">Appointed</span> : null}
             {unavailable ? <span className="text-xs text-gold">Unavailable</span> : null}

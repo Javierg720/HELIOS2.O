@@ -12,8 +12,8 @@ export function Assessment({ store }: { store: HeliosStore }) {
     <aside className="fixed inset-0 z-40 flex flex-col bg-bg xl:static xl:z-auto xl:w-[28rem] xl:border-l xl:border-line">
       <header className="flex items-center justify-between gap-3 border-b border-line px-5 py-4">
         <div>
-          <p className="text-xs tracking-wide text-muted uppercase">Needs assessment</p>
-          <h2 className="text-lg font-medium">Case context</h2>
+          <p className="text-xs tracking-widest text-muted uppercase">Needs assessment</p>
+          <h2 className="text-2xl font-semibold">Case context</h2>
         </div>
         <div className="flex gap-2">
           <Button tone="quiet" onClick={() => store.reset()}>
